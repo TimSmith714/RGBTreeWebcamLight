@@ -108,7 +108,7 @@ class RGBTreeLight(Cmd):
     def do_b(self, inp):
         print("Less Green")
         if tree.color[1] > 0:
-        tree.color = (tree.color[0], tree.color[1], tree.color[2] - 0.1)
+            tree.color = (tree.color[0], tree.color[1], tree.color[2] - 0.1)
     
     def help_B(self):
         print("Makes red darker by 10%")
