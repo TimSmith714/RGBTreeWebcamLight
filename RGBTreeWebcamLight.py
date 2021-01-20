@@ -29,6 +29,7 @@ class RGBTreeLight(Cmd):
     r = 0.1
     g = 0.1
     b = 0.1
+    debug = true
 
     print("Starting")
 
@@ -47,6 +48,8 @@ class RGBTreeLight(Cmd):
         print("Brighter")
         if tree.brightness < 1:
             tree.brightness = tree.brightness + 0.1
+        if debug:
+            print("Brightness: " + str(tree.brightness))
 
     def help_L(self):
         print("Makes brighter by 10%")
