@@ -16,6 +16,7 @@ r = 0.1
 g = 0.1
 b = 0.1
 brightness = 0.1
+debug = True
 
 def setRow(lights, r, g, b):
     for pixel in lights:
@@ -25,11 +26,6 @@ tree.color = (r,g,b)
 tree.brightness = brightness
 
 class RGBTreeLight(Cmd):
-    brightness = 0.1
-    r = 0.1
-    g = 0.1
-    b = 0.1
-    debug = true
 
     print("Starting")
 
