@@ -18,25 +18,12 @@ b = 0.1
 brightness = 0.1
 debug = True
 
-def setRow(lights, r, g, b):
-    for pixel in lights:
-        tree[pixel].color = (r,g,b)
-
 tree.color = (r,g,b)
 tree.brightness = brightness
 
 class RGBTreeLight(Cmd):
 
     print("Starting")
-
-    def do_exit(self, inp):
-        '''exit the application'''
-        tree.color = (0,0,0)
-        print("Quitting")
-        return True
-
-    def help_exit(self):
-        print("Sets the lights to 0 and quits")
 
     # Brightness
 
@@ -63,7 +50,7 @@ class RGBTreeLight(Cmd):
     # Red
 
     def do_R(self, inp):
-        print("Redder")
+        print("More Red")
         if tree.color[0] < 1:
             tree.color = (tree.color[0] + 0.1, tree.color[1], tree.color[2])
         if debug:
@@ -80,12 +67,12 @@ class RGBTreeLight(Cmd):
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
     def help_r(self):
-        print("Makes red darker by 10%")
+        print("Makes Red darker by 10%")
 
     # Green
 
     def do_G(self, inp):
-        print("Greener")
+        print("More Green")
         if tree.color[1] < 1:
             tree.color = (tree.color[0], tree.color[1] + 0.1 , tree.color[2])
         if debug:
@@ -102,29 +89,29 @@ class RGBTreeLight(Cmd):
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
     def help_g(self):
-        print("Makes red darker by 10%")
+        print("Makes green darker by 10%")
 
     # Blue
 
     def do_B(self, inp):
-        print("Greener")
+        print("More Blue")
         if tree.color[1] < 1:
             tree.color = (tree.color[0], tree.color[1], tree.color[2] + 0.1 )
         if debug:
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
 
     def help_B(self):
-        print("Makes green brighter by 10%")
+        print("Makes Blue brighter by 10%")
 
     def do_b(self, inp):
-        print("Less Green")
+        print("Less Blue")
         if tree.color[1] > 0:
             tree.color = (tree.color[0], tree.color[1], tree.color[2] - 0.1)
         if debug:
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
     def help_B(self):
-        print("Makes red darker by 10%")
+        print("Makes Blue darker by 10%")
 
     # Reset color to White
 
@@ -134,5 +121,16 @@ class RGBTreeLight(Cmd):
 
     def help_w(self):
         print("Set to White at reds brightness")
+
+    # App Controls
+
+    def help_exit(self):
+        print("Sets the lights to 0 and quits")
+
+    def do_exit(self, inp):
+        '''exit the application'''
+        tree.color = (0,0,0)
+        print("Quitting")
+        return True
 
 RGBTreeLight().cmdloop()
