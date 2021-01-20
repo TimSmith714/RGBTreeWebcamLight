@@ -54,6 +54,8 @@ class RGBTreeLight(Cmd):
         print("Darker")
         if tree.brightness > 0:
             tree.brightness = tree.brightness - 0.1
+        if debug:
+            print("Brightness: " + str(tree.brightness))
     
     def help_l(self):
         print("Makes darker by 10%")
@@ -64,6 +66,8 @@ class RGBTreeLight(Cmd):
         print("Redder")
         if tree.color[0] < 1:
             tree.color = (tree.color[0] + 0.1, tree.color[1], tree.color[2])
+        if debug:
+            print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
 
     def help_R(self):
         print("Makes red brighter by 10%")
@@ -72,6 +76,8 @@ class RGBTreeLight(Cmd):
         print("Less Red")
         if tree.color[0] > 0:
             tree.color = (tree.color[0] - 0.1, tree.color[1], tree.color[2])
+        if debug:
+            print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
     def help_r(self):
         print("Makes red darker by 10%")
@@ -82,6 +88,8 @@ class RGBTreeLight(Cmd):
         print("Greener")
         if tree.color[1] < 1:
             tree.color = (tree.color[0], tree.color[1] + 0.1 , tree.color[2])
+        if debug:
+            print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
 
     def help_G(self):
         print("Makes green brighter by 10%")
@@ -90,6 +98,8 @@ class RGBTreeLight(Cmd):
         print("Less Green")
         if tree.color[1] > 0:
             tree.color = (tree.color[0], tree.color[1] - 0.1, tree.color[2])
+        if debug:
+            print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
     def help_g(self):
         print("Makes red darker by 10%")
@@ -100,6 +110,8 @@ class RGBTreeLight(Cmd):
         print("Greener")
         if tree.color[1] < 1:
             tree.color = (tree.color[0], tree.color[1], tree.color[2] + 0.1 )
+        if debug:
+            print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
 
     def help_B(self):
         print("Makes green brighter by 10%")
@@ -108,6 +120,8 @@ class RGBTreeLight(Cmd):
         print("Less Green")
         if tree.color[1] > 0:
             tree.color = (tree.color[0], tree.color[1], tree.color[2] - 0.1)
+        if debug:
+            print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
     def help_B(self):
         print("Makes red darker by 10%")
