@@ -41,6 +41,8 @@ class RGBTreeLight(Cmd):
     def help_exit(self):
         print("Sets the lights to 0 and quits")
 
+    # Brightness
+
     def do_L(self, inp):
         print("Brighter")
         tree.brightness = tree.brightness + 0.1
@@ -55,5 +57,52 @@ class RGBTreeLight(Cmd):
     def help_l(self):
         print("Makes darker by 10%")
 
+    # Red
+
+    def do_R(self, inp):
+        print("Redder")
+        tree.color = (tree.color[0] + 0.1, tree.color[1], tree.color[2])
+
+    def help_R(self):
+        print("Makes red brighter by 10%")
+
+    def do_r(self, inp):
+        print("Less Red")
+        tree.color = (tree.color[0] - 0.1, tree.color[1], tree.color[2])
+    
+    def help_r(self):
+        print("Makes red darker by 10%")
+
+    # Green
+
+    def do_G(self, inp):
+        print("Greener")
+        tree.color = (tree.color[0], tree.color[1] + 0.1 , tree.color[2])
+
+    def help_G(self):
+        print("Makes green brighter by 10%")
+
+    def do_g(self, inp):
+        print("Less Green")
+        tree.color = (tree.color[0], tree.color[1] - 0.1, tree.color[2])
+    
+    def help_g(self):
+        print("Makes red darker by 10%")
+
+    # Green
+
+    def do_G(self, inp):
+        print("Greener")
+        tree.color = (tree.color[0], tree.color[1], tree.color[2] + 0.1 )
+
+    def help_G(self):
+        print("Makes green brighter by 10%")
+
+    def do_g(self, inp):
+        print("Less Green")
+        tree.color = (tree.color[0], tree.color[1], tree.color[2] - 0.1)
+    
+    def help_g(self):
+        print("Makes red darker by 10%")
 
 RGBTreeLight().cmdloop()
