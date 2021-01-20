@@ -141,7 +141,9 @@ class RGBTreeLight(Cmd):
         print("Quitting")
         return True
 
-    def help_intro(self):
-        print("Hello")
+    def help_QuickGuide(self):
+        print("Upper case increases, lowercase decreases")
+        print("L:brightness, R:red, G:green, B:blue")
+        print("w: resets colour to white using red level")
 
 RGBTreeLight().cmdloop()
