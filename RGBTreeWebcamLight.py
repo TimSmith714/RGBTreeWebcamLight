@@ -110,7 +110,7 @@ class RGBTreeLight(Cmd):
         if debug:
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
-    def help_B(self):
+    def help_b(self):
         print("Makes Blue darker by 10%")
 
     # Reset color to White
