@@ -23,6 +23,14 @@ tree.brightness = brightness
 
 class RGBTreeLight(Cmd):
 
+    #do_greet(self, line):
+    print("Welcome to the RGBXmasTree Webcam utility")
+    print("=========================================")
+    print("Upper case increases, lowercase decreases")
+    print("L:brightness, R:red, G:green, B:blue")
+    print("w: resets colour to white using red level")
+
+
     print("Starting")
 
     # Brightness
@@ -132,5 +140,8 @@ class RGBTreeLight(Cmd):
         tree.color = (0,0,0)
         print("Quitting")
         return True
+
+    def help_intro(self):
+        print("Hello")
 
 RGBTreeLight().cmdloop()
