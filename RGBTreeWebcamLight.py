@@ -45,14 +45,16 @@ class RGBTreeLight(Cmd):
 
     def do_L(self, inp):
         print("Brighter")
-        tree.brightness = tree.brightness + 0.1
+        if tree.brightness < 1:
+            tree.brightness = tree.brightness + 0.1
 
     def help_L(self):
         print("Makes brighter by 10%")
 
     def do_l(self, inp):
         print("Darker")
-        tree.brightness = tree.brightness - 0.1
+        if tree.brightness > 0:
+            tree.brightness = tree.brightness - 0.1
     
     def help_l(self):
         print("Makes darker by 10%")
@@ -61,14 +63,16 @@ class RGBTreeLight(Cmd):
 
     def do_R(self, inp):
         print("Redder")
-        tree.color = (tree.color[0] + 0.1, tree.color[1], tree.color[2])
+        if tree.color[0] < 1:
+            tree.color = (tree.color[0] + 0.1, tree.color[1], tree.color[2])
 
     def help_R(self):
         print("Makes red brighter by 10%")
 
     def do_r(self, inp):
         print("Less Red")
-        tree.color = (tree.color[0] - 0.1, tree.color[1], tree.color[2])
+        if tree.color[0] > 0:
+            tree.color = (tree.color[0] - 0.1, tree.color[1], tree.color[2])
     
     def help_r(self):
         print("Makes red darker by 10%")
@@ -77,14 +81,16 @@ class RGBTreeLight(Cmd):
 
     def do_G(self, inp):
         print("Greener")
-        tree.color = (tree.color[0], tree.color[1] + 0.1 , tree.color[2])
+        if tree.color[1] < 1:
+            tree.color = (tree.color[0], tree.color[1] + 0.1 , tree.color[2])
 
     def help_G(self):
         print("Makes green brighter by 10%")
 
     def do_g(self, inp):
         print("Less Green")
-        tree.color = (tree.color[0], tree.color[1] - 0.1, tree.color[2])
+        if tree.color[1] > 0:
+            tree.color = (tree.color[0], tree.color[1] - 0.1, tree.color[2])
     
     def help_g(self):
         print("Makes red darker by 10%")
@@ -93,13 +99,15 @@ class RGBTreeLight(Cmd):
 
     def do_B(self, inp):
         print("Greener")
-        tree.color = (tree.color[0], tree.color[1], tree.color[2] + 0.1 )
+        if tree.color[1] < 1:
+            tree.color = (tree.color[0], tree.color[1], tree.color[2] + 0.1 )
 
     def help_B(self):
         print("Makes green brighter by 10%")
 
     def do_b(self, inp):
         print("Less Green")
+        if tree.color[1] > 0:
         tree.color = (tree.color[0], tree.color[1], tree.color[2] - 0.1)
     
     def help_B(self):
