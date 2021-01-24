@@ -1,23 +1,45 @@
 from tree import RGBXmasTree
 from time import sleep
 from cmd import Cmd
+import configparser
 
 # Had to do  pip3 install rpi.gpio
 
+#Init the tree 
 tree = RGBXmasTree()
-
+# Set up the rows
 bottomRow = [0,16,15,6,12,24,19,7]
 middleRow = [1,17,14,5,11,23,20,8]
 topRow = [2,18,13,4,10,22,21,9]
 star = [3]
 rows = [bottomRow, middleRow, topRow, star]
 colorStep = 0.0039
-r = 0.1
-g = 0.1
-b = 0.1
-brightness = 0.1
-debug = True
 
+#Import config
+config = configparser.ConfigParser()
+# Try and load config
+config.read('config.ini')
+# Check for contents
+#print("Config Length: " + str(len(config)))
+
+if len(config) == 1:
+    # Empty so set the defaults
+    print("No Config file found")
+    config['COLOURS'] = { 'r': 0.1, 'g': 0.1, 'b': 0.1, 'brightness': 0.1 }
+    config['ADVANCED'] = { 'debug': True }
+    with open('config.ini', 'w') as configfile:
+        config.write(configfile)
+    config.read('config.ini')
+
+
+# Load the config settings
+r = float(config['COLOURS']['r'])
+g = float(config['COLOURS']['g'])
+b = float(config['COLOURS']['b'])
+brightness = float(config['COLOURS']['brightness'])
+debug = config['ADVANCED']['debug']
+
+# Apply the default from the config file
 tree.color = (r,g,b)
 tree.brightness = brightness
 
@@ -146,4 +168,22 @@ class RGBTreeLight(Cmd):
         print("L:brightness, R:red, G:green, B:blue")
         print("w: resets colour to white using red level")
 
+    def do_save(self, inp):
+        config['COLOURS'] = { 'r': tree.color[0], 'g': tree.color[1], 'b': tree.color[2], 'brightness': tree.brightness }
+        with open('config.ini', 'w') as configfile:
+            config.write(configfile)
+        print("Settings Saved")
+
+    def help_save(self):
+        print("Save the current settings to the config file")
+
 RGBTreeLight().cmdloop()
+
+
+## Functions 
+def setDefaultConfig():
+    config['COLOURS'] = { 'r': 0.1, 'g': 0.1, 'b': 0.1, 'brightness': 0.1 }
+    config['ADVANCED'] = { 'debug': True }
+    with open('config.ini', 'w') as configfile:
+        config.write(configfile)
+    config.read('config.ini')
