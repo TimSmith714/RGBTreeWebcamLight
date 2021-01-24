@@ -7,7 +7,7 @@ import configparser
 
 #Init the tree 
 tree = RGBXmasTree()
-# Set up the rows
+# Set up the rows legacy by might be helpful
 bottomRow = [0,16,15,6,12,24,19,7]
 middleRow = [1,17,14,5,11,23,20,8]
 topRow = [2,18,13,4,10,22,21,9]
@@ -43,6 +43,21 @@ debug = config['ADVANCED']['debug']
 tree.color = (r,g,b)
 tree.brightness = brightness
 
+# Define colour change function
+
+def updateColour(colour, change):
+        # colour: String
+        # change: float
+        if colour == 'r':
+            tree.color = (round(tree.color[0] + change,1), tree.color[1], tree.color[2])
+        elif colour == 'g':
+            tree.color = (tree.color[0], round(tree.color[1] + change,1), tree.color[2])
+        elif colour == 'b':
+            tree.color = (tree.color[0], tree.color[1], round(tree.color[2] + change,1))
+        # Finally show the colour if in debug
+        if debug:
+            print(tree.color)
+
 class RGBTreeLight(Cmd):
 
     #do_greet(self, line):
@@ -51,7 +66,7 @@ class RGBTreeLight(Cmd):
     print("Upper case increases, lowercase decreases")
     print("L:brightness, R:red, G:green, B:blue")
     print("w: resets colour to white using red level")
-
+    print("save: save settings to config file")
 
     print("Starting")
 
@@ -82,7 +97,7 @@ class RGBTreeLight(Cmd):
     def do_R(self, inp):
         print("More Red")
         if tree.color[0] < 1:
-            tree.color = (tree.color[0] + 0.1, tree.color[1], tree.color[2])
+            updateColour('r',0.1)
         if debug:
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
 
@@ -92,7 +107,7 @@ class RGBTreeLight(Cmd):
     def do_r(self, inp):
         print("Less Red")
         if tree.color[0] > 0:
-            tree.color = (tree.color[0] - 0.1, tree.color[1], tree.color[2])
+            updateColour('r',-0.1)
         if debug:
             print("Colour: " + str(tree.color[0]) + "," + str(tree.color[1]) + "," + str(tree.color[2]) + "," )
     
@@ -180,10 +195,3 @@ class RGBTreeLight(Cmd):
 RGBTreeLight().cmdloop()
 
 
-## Functions 
-def setDefaultConfig():
-    config['COLOURS'] = { 'r': 0.1, 'g': 0.1, 'b': 0.1, 'brightness': 0.1 }
-    config['ADVANCED'] = { 'debug': True }
-    with open('config.ini', 'w') as configfile:
-        config.write(configfile)
-    config.read('config.ini')
